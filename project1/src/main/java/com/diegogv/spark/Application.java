@@ -21,7 +21,7 @@ public class Application {
         df.show();
 
         // Transformation
-        //df = df.withColumn("full_name", concat("first_name", lit(", "), "last_name"));
+        //df = df.withColumn("full_name", concat(df.col("first_name"), lit(", "), df.col("last_name")));
         df = df.filter(df.col("comment").rlike("\\d+"))
                 .orderBy(df.col("last_name").asc()); // comments that have numbers within them
 
