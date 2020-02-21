@@ -4,10 +4,8 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
-
 import java.util.Properties;
-
-import static org.apache.spark.sql.functions.*; // concat, lit, etc
+import org.apache.spark.sql.functions; // concat, lit, etc
 
 public class Application {
     public static void main(String args[]) {
@@ -21,7 +19,7 @@ public class Application {
         df.show();
 
         // Transformation
-        //df = df.withColumn("full_name", concat(df.col("first_name"), lit(", "), df.col("last_name")));
+        df = df.withColumn("full_name", functions.concat(df.col("first_name"), functions.lit(", "), df.col("last_name")));
         df = df.filter(df.col("comment").rlike("\\d+"))
                 .orderBy(df.col("last_name").asc()); // comments that have numbers within them
 
