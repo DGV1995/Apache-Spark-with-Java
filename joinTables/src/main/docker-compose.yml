@@ -1,0 +1,13 @@
+version: '2.1'
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: diego
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: data
+
+
+
